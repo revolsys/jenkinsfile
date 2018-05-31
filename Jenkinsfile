@@ -52,7 +52,9 @@ git push --force origin ${gitTag}
   }
 
   stage ('Upload') {
-    sh 'luarocks upload *.rockspec --api-key=${luarocksApiKey}'
+    def properties = readProperties file: 'source/jenkinsfile.properties'
+    def rockFile = "${packageName}-${gitTag}.rockspec"
+    sh "luarocks upload ${rockFile} --api-key=${luarocksApiKey}"
   }
 
 }
