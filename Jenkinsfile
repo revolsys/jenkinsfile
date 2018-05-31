@@ -27,12 +27,13 @@ node ('master') {
     def properties = readProperties file: 'source/jenkinsfile.properties'
     def packageName = properties['luarocksPackage']
     def rockFile = "${packageName}-${gitTag}.rockspec"
+    def gitHibProjectSed = "${gitHubProject}".replace('/', '\\/)
     dir('source') {
       sh """
 git checkout -B version-${gitTag}
 git mv ${packageName}-VERSION.rockspec ${rockFile}
 sed -i "s/VERSION/${gitTag}/g" ${rockFile}
-sed -i "s/GITHUB_PROJECT/${gitHubProject}/g" ${rockFile}
+sed -i "s/GITHUB_PROJECT/${gitHibProjectSed}/g" ${rockFile}
       """
     }
   }

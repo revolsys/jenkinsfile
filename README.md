@@ -2,6 +2,12 @@
 
 A Jenkinsfile build pipeline to tag and release a luarocks project.  
 
+## Install Jenkins Plugins
+
+Install the following plugin to the Jenkins installation.
+
+Pipeline Utility Steps
+
 ## Create Jenkins job
 If not already setup create a Jenkins pipeline job with the following parameters
 
