@@ -6,9 +6,6 @@
 // luarocksApiKey
 
     
-def getProperties() {
-  return readProperties file: 'source/jenkinsfile.properties'
-}
 node ('master') {
 
   stage ('Checkout') {
@@ -27,7 +24,7 @@ node ('master') {
   }
 
   stage ('Set Version') {
-    def properties = getProperties()
+    def properties = readProperties file: 'source/jenkinsfile.properties'
     def packageName = properties['luarocksPackage']
     def rockFile = "${packageName}-${gitTag}.rockspec"
     dir('source') {
@@ -41,7 +38,7 @@ sed -i "s/GITHUB_PROJECT/${gitHubProject}/g" ${rockFile}
   }
 
   stage ('Tag') {
-    def properties = getProperties()
+    def properties = readProperties file: 'source/jenkinsfile.properties'
     dir('source') {
       sh '''
 git config --global user.email "$properties[gitUserEmail]"
