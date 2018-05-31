@@ -27,7 +27,7 @@ node ('master') {
     def properties = readProperties file: 'source/jenkinsfile.properties'
     def packageName = properties['luarocksPackage']
     def rockFile = "${packageName}-${gitTag}.rockspec"
-    def gitHibProjectSed = "${gitHubProject}".replace('/', '\\/)
+    def gitHibProjectSed = "${gitHubProject}".replace('/', '\\/')
     dir('source') {
       sh """
 git checkout -B version-${gitTag}
